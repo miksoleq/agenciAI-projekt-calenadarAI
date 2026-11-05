@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/CalendarAI.Agent/CalendarAI.Agent.csproj" />
+    <Project Path="src/CalendarAI.Cli/CalendarAI.Cli.csproj" />
+    <Project Path="src/CalendarAI.Core/CalendarAI.Core.csproj" />
+  </Folder>
+</Solution>
