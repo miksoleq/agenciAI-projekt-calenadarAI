@@ -2,7 +2,7 @@
 
 Inteligentny kalendarz, który nie tylko zapisuje wydarzenia i terminy, ale podpowiada, nad czym i kiedy pracować, żeby zdążyć z zadaniami i zachować czas na odpoczynek. Dla osób z napiętym, zmiennym grafikiem, którym prokrastynacja i natłok obowiązków utrudniają samodzielne planowanie.
 
-📄 Pełny opis idei: [vision.md](vision.md)
+📄 Pełny opis idei: [vision.md](docs/vision.md)
 
 ## Główne funkcje
 
