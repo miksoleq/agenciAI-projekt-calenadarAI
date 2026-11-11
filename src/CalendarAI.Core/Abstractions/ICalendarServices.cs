@@ -7,6 +7,7 @@ namespace CalendarAI.Core.Abstractions;
 /// </summary>
 public interface ICalendarService
 {
+    
     /// <summary>Dodaje wydarzenie i zapisuje stan. Rzuca ArgumentException, gdy end &lt;= start.</summary>
     Event AddEvent(string title, DateTimeOffset start, DateTimeOffset end);
 
