@@ -7,4 +7,5 @@ public sealed record Event(
     Guid Id,
     string Title,
     DateTimeOffset Start,
-    DateTimeOffset End);
+    DateTimeOffset End
+    );
