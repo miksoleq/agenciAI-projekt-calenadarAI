@@ -15,8 +15,25 @@ Inteligentny kalendarz, który nie tylko zapisuje wydarzenia i terminy, ale podp
 - **Elastyczny plan** — to podpowiedź, nie sztywny nakaz; pomaga podejmować bieżące decyzje bez rezygnowania z odpoczynku.
 
 ## Uruchomienie
+cd /Users/mwelpa/PW/5SEM/AA/agenciAI-projekt-calenadarAI
+dotnet run --project src/CalendarAI.Cli/CalendarAI.Cli.csproj
+
+ollama serve
+ollama run qwen2.5
+
+demo:
+app> help
+app> chat
+chat> add a workout tomorrow at 6pm
+chat> /back
+app> list
+app> exit
 
 ### Wymagania
+
+- .NET 10 SDK
+- Ollama z pobranym modelem, np. `ollama run qwen2.5`
+- dla OpenAI: zmienna `OPENAI_API_KEY`
 
 ### Konfiguracja
 
