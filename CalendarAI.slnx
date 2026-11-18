@@ -4,4 +4,7 @@
     <Project Path="src/CalendarAI.Cli/CalendarAI.Cli.csproj" />
     <Project Path="src/CalendarAI.Core/CalendarAI.Core.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CalendarAI.Core.Tests/CalendarAI.Core.Tests.csproj" />
+  </Folder>
 </Solution>
