@@ -47,6 +47,16 @@ dotnet user-secrets set "<NazwaKlucza>" "<wartość>"
 
 Pozostałe, niewrażliwe ustawienia znajdują się w `appsettings.json`.
 
+### PCSS
+
+Konfiguracja domyślnie korzysta z modelu `Qwen3.5-397B-A17B` przez API PCSS. Przed uruchomieniem ustaw klucz w terminalu:
+
+```bash
+export PCSS_API_KEY='twój_klucz'
+```
+
+Klucz pochodzi z portalu PCSS. Nie zapisuj go w repozytorium.
+
 ### Budowanie i uruchomienie
 
 ## Autorzy

@@ -1,3 +1,4 @@
+using System.ClientModel;
 using Microsoft.Extensions.AI;
 using OllamaSharp;
 using OpenAI;
@@ -12,6 +13,7 @@ public static class ChatClientFactory
         {
             LlmProvider.Ollama => CreateOllama(options),
             LlmProvider.OpenAI => CreateOpenAI(options),
+            LlmProvider.Pcss => CreatePcss(options),
             _ => throw new NotSupportedException($"Unknown LLM provider: {options.Provider}") 
         };
 
@@ -22,6 +24,21 @@ public static class ChatClientFactory
 
     private static IChatClient CreateOllama(LlmOptions o) =>
         new OllamaApiClient(new Uri(o.Endpoint ?? "http://localhost:11434"), o.Model);
+
+    private static IChatClient CreatePcss(LlmOptions o)
+    {
+        if (string.IsNullOrWhiteSpace(o.ApiKey))
+            throw new InvalidOperationException("PCSS_API_KEY is not set.");
+
+        var clientOptions = new OpenAIClientOptions
+        {
+            Endpoint = new Uri(o.Endpoint ?? "https://llm.hpc.psnc.pl/v1/")
+        };
+
+        return new OpenAIClient(new ApiKeyCredential(o.ApiKey), clientOptions)
+            .GetChatClient(o.Model)
+            .AsIChatClient();
+    }
 
     private static IChatClient CreateOpenAI(LlmOptions o)
     {
