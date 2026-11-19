@@ -1,6 +1,6 @@
 namespace CalendarAI.Agent.Llm;
 
-public enum LlmProvider { Ollama, OpenAI }
+public enum LlmProvider { Ollama, OpenAI, Pcss }
 
 public sealed record LlmOptions
 {

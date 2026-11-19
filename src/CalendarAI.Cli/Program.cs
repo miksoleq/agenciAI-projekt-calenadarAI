@@ -1,31 +1,3 @@
-<<<<<<< HEAD
-﻿using System.Text;
-using CalendarAI.Cli;
-using CalendarAI.Cli.Commands;
-using CalendarAI.Core.Abstractions;
-using CalendarAI.Core.Services;
-using CalendarAI.Core.Storage;
-
-Console.OutputEncoding = Encoding.UTF8;   // polskie znaki i "–" w konsoli
-
-// Composition root: jedyne miejsce, gdzie powstają konkretne obiekty.
-IClock clock = new SystemClock();
-ICalendarService calendar = new CalendarService(new JsonStateStore("calendar.json"));  // po A: new CalendarService(new JsonStateStore("calendar.json"))
-
-var input = Console.In;
-var output = Console.Out;
-
-var commands = new List<ICommand>
-{
-    new AddCommand(calendar, output),
-    new ListCommand(calendar, clock, output),
-    new ExitCommand(),
-};
-commands.Add(new HelpCommand(commands, output));   // help dostaje tę samą listę, więc widzi też siebie
-
-var dispatcher = new CommandDispatcher(commands, output);
-new Repl(dispatcher, input, output).Run();
-=======
 using CalendarAI.Agent.Llm;
 using CalendarAI.Agent.Prompts;
 using CalendarAI.Agent.Tools;
@@ -45,10 +17,11 @@ var config = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", optional: false)
     .Build();
 
-var llmOptions = (config.GetSection("Llm").Get<LlmOptions>() ?? new LlmOptions()) with
+var llmOptions = config.GetSection("Llm").Get<LlmOptions>() ?? new LlmOptions();
+llmOptions = llmOptions with
 {
-    // The API key must stay outside appsettings.json.
-    ApiKey = Environment.GetEnvironmentVariable("OPENAI_API_KEY")
+    ApiKey = Environment.GetEnvironmentVariable(
+        llmOptions.Provider == LlmProvider.Pcss ? "PCSS_API_KEY" : "OPENAI_API_KEY")
 };
 
 // This clock supplies the current date to the system prompt and app mode.
@@ -88,4 +61,3 @@ Console.WriteLine(
 
 // AppMode owns the top-level loop. /back inside AgentMode returns control here.
 await appMode.RunAsync();
->>>>>>> origin/main
